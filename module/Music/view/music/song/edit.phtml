@@ -1,0 +1,29 @@
+<?php
+$title = 'Edit song';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('song', array('action' => 'edit', 'id' => $this->id)));
+$form->prepare();
+
+echo $this->form()->openTag($form) . PHP_EOL;
+echo $this->formHidden($form->get('csrf')) . PHP_EOL;
+echo $this->formHidden($form->get('id')) . PHP_EOL;
+echo '<input name="album-id" id="album-id" type="hidden" value="' . $song->getAlbum()->getId() . '">';
+echo $this->formRow($form->get('album')) . PHP_EOL;
+echo $this->formRow($form->get('name')) . PHP_EOL;
+echo $this->formRow($form->get('price')) . PHP_EOL;
+echo '<input id="mp3-path-value" type="hidden" value="' . $song->getMp3FilePath() . '" />' .  PHP_EOL;
+echo '<input id="ogg-path-value" type="hidden" value="' . $song->getOggFilePath() . '" />' . PHP_EOL;
+echo '<fieldset id="file-uploads-fieldset"><legend>File uploads</legend><p>Both files required to change files.</p>';
+echo $this->formRow($form->get('mp3')) . PHP_EOL;
+echo $this->formRow($form->get('ogg')) . '<br/>' . PHP_EOL;
+echo '<a id="song-change-cancel-button" class="button secondary" href="'
+    . $this->url('song', array('action' => 'edit', 'id' => $this->id))
+    . '">Cancel</a></fieldset>';
+echo $this->formInput($form->get('submit')) . PHP_EOL;
+echo $this->form()->closeTag($form) . PHP_EOL;
+

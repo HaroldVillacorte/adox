@@ -1,0 +1,27 @@
+<?php
+$title = 'Add new album';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('album', array('action' => 'add')));
+$form->prepare();
+
+echo $this->form()->openTag($form) . PHP_EOL;
+echo $this->formHidden($form->get('csrf')) . PHP_EOL;
+echo $this->formHidden($form->get('id')) . PHP_EOL;
+if ($id != null)
+{
+    echo '<input name="artist-id" id="artist-id" type="hidden" value="' . $id . '">';
+}
+echo $this->formRow($form->get('artist')) . PHP_EOL;
+echo $this->formRow($form->get('name')) . PHP_EOL;
+echo $this->formRow($form->get('price')) . PHP_EOL;
+echo '<fieldset><legend>Album Art upload</legend>';
+echo $this->formRow($form->get('album_art')) . PHP_EOL;
+echo '</fieldset>';
+echo $this->formInput($form->get('submit')) . PHP_EOL;
+echo $this->form()->closeTag($form) . PHP_EOL;
+

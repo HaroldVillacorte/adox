@@ -1,0 +1,26 @@
+<?php
+$title = $this->escapeHtml($song->getName());
+$this->headTitle($title);
+?>
+<h4><?php echo $this->escapeHtml($title); ?></h4>
+<p><em>by <?php echo $this->escapeHtml($song->getAlbum()->getArtist()->getName()); ?></em></p>
+<p>Album: <em><?php echo $this->escapeHtml($song->getAlbum()->getName()); ?></em></p>
+
+<p>
+    <img class="song-album-art" src="<?php echo $this->url('home')
+        . $this->escapeHtml($song->getAlbum()->getArtUrl()); ?>"
+        alt="<?php echo $song->getAlbum()->getName(); ?>" />
+</p>
+
+<audio controls="controls" autoplay="true" id="song-view-audio">
+    <source src="<?php echo $this->url('home') . $this->escapeHtml($song->getMp3Url()); ?>" />
+    <source src="<?php echo $this->url('home') . $this->escapeHtml($song->getOggUrl()); ?>" />
+</audio>
+
+<br/>
+<br/>
+
+<p>
+<a href="<?php echo $this->url('album', array('action' => 'view', 'id' => (int) $song->getAlbum()->getId())); ?>"
+   class="button primary">Back to Album</a>
+</p>

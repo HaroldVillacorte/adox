@@ -1,0 +1,63 @@
+<?php
+$title = $this->escapeHtml($artist->getName());
+$this->headTitle($title);
+?>
+<h2><?php echo $this->escapeHtml($title); ?></h2>
+<h3>Albums</h3>
+
+<table border="0" width="100%">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Artist</th>
+            <th>Genres</th>
+            <th>Price</th>
+            <th>
+                <a
+                    href="<?php echo $this->url('album', array('action' => 'add', 'id' => (int) $artist->getId())); ?>"
+                    title="Add an album.">Add +
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($albums as $album): ?>
+        <tr>
+            <td><?php echo (int) $album->getId(); ?></td>
+            <td>
+                <a href="<?php echo $this->url('album', array('action' => 'view', 'id' => (int) $album->getId())); ?>">
+                    <?php echo $this->escapeHtml($album->getName()); ?>
+                </a>
+            </td>
+            <td>
+                <a href="<?php echo $this->url('artist', array('action' => 'view', 'id' => (int) $album->getArtist()->getId())); ?>">
+                    <?php echo $this->escapeHtml($album->getArtist()->getName()); ?>
+                </a>
+            </td>
+            <td>
+                <?php
+                    $genres = $artist->getGenres();
+                    $genres_array = array();
+                    foreach ($genres as $genre) {
+                        $genres_array[] = '<a href="'
+                            . $this->url('genre', array('action' => 'view', 'id' => $genre->getId())) .'">'
+                            . $this->escapeHtml($genre->getName()) . '</a>';
+                    }
+                    echo implode(', ', $genres_array);
+                ?>
+            </td>
+            <td><?php echo $this->escapeHtml($album->getPrice()); ?></td>
+            <td>
+                <a href="<?php echo $this->url('album', array('action' => 'edit', 'id' => (int) $album->getId())); ?>"
+                   class="label primary small round"
+                   title="Edit album <?php echo (int) $album->getId(); ?>.">Edit</a>
+                &nbsp;
+                <a href="<?php echo $this->url('album', array('action' => 'delete', 'id' => (int) $album->getId())); ?>"
+                   class="label alert small round"
+                   title="Delete album <?php echo (int) $album->getId(); ?>.">Delete</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

@@ -1,0 +1,49 @@
+<?php
+$title = 'All artists';
+$this->headTitle($title);
+?>
+<h2><?php echo $title; ?></h2>
+
+<table border="0" width="100%">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Genres</th>
+            <th><a href="<?php echo $this->url('artist', array('action' => 'add')); ?>" title="Add an artist.">Add +</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($artists as $artist): ?>
+        <tr>
+            <td><?php echo (int) $artist->getId(); ?></td>
+            <td>
+                <a href="<?php echo $this->url('artist', array('action' => 'view', 'id' => (int) $artist->getId())); ?>">
+                    <?php echo $this->escapeHtml($artist->getName()); ?>
+                </a>
+            </td>
+            <td>
+                <?php
+                    $genres = $artist->getGenres();
+                    $genres_array = array();
+                    foreach ($genres as $genre) {
+                        $genres_array[] = '<a href="'
+                            . $this->url('genre', array('action' => 'view', 'id' => (int) $genre->getId())) .'">'
+                            . $this->escapeHtml($genre->getName()) . '</a>';
+                    }
+                    echo implode(', ', $genres_array);
+                ?>
+            </td>
+            <td>
+                <a href="<?php echo $this->url('artist', array('action' => 'edit', 'id' => (int) $artist->getId())); ?>"
+                   class="label primary small round"
+                   title="Edit artist <?php echo (int) $artist->getId(); ?>.">Edit</a>
+                &nbsp;
+                <a href="<?php echo $this->url('artist', array('action' => 'delete', 'id' => (int) $artist->getId())); ?>"
+                   class="label alert small round"
+                   title="Delete artist <?php echo (int) $artist->getId(); ?>.">Delete</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

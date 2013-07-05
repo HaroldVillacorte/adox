@@ -1,0 +1,27 @@
+<noscript style="background: yellow;color: blueviolet; padding: 20px;">
+    Javascript is required: Please turn your javascript on and refresh your browser to enable all the site features.
+</noscript>
+<?php if ($this->FlashMessenger()->render('error')): ?>
+    <div id="messages" class="columns twelve alert-box alert">
+        <?php echo $this->FlashMessenger()->render('error'); ?>
+        <a href="" class="close">&times;</a>
+    </div>
+<?php endif; ?>
+<?php if ($this->FlashMessenger()->render('success')): ?>
+    <div id="messages" class="columns twelve alert-box success">
+        <?php echo $this->FlashMessenger()->render('success'); ?>
+        <a href="" class="close">&times;</a>
+    </div>
+<?php endif; ?>
+<?php if ($this->FlashMessenger()->render('info')): ?>
+    <div id="messages" class="columns twelve alert-box">
+        <?php echo $this->FlashMessenger()->render('info'); ?>
+        <a href="" class="close">&times;</a>
+    </div>
+<?php endif; ?>
+<?php if ($this->FlashMessenger()->render('default')): ?>
+    <div id="messages" class="columns twelve alert-box secondary">
+        <?php echo $this->FlashMessenger()->render('default'); ?>
+        <a href="" class="close">&times;</a>
+    </div>
+<?php endif; ?>

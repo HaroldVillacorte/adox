@@ -1,0 +1,28 @@
+<?php
+$title = 'Edit Album';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action',
+    $this->url('album', array('action' => 'edit', 'id'=>$this->id)));
+$form->prepare();
+
+echo $this->form()->openTag($form) . PHP_EOL;
+echo $this->formHidden($form->get('csrf')) . PHP_EOL;
+echo $this->formHidden($form->get('id')) . PHP_EOL;
+echo '<input name="artist-id" id="artist-id" type="hidden" value="' . $album->getArtist()->getId() . '">';
+echo $this->formRow($form->get('artist')) . PHP_EOL;
+echo $this->formRow($form->get('name')) . PHP_EOL;
+echo $this->formRow($form->get('price')) . PHP_EOL;
+echo '<input id="album-art-url-value" type="hidden" value="' . $this->url('home') . $album->getArtUrl() . '" />' .  PHP_EOL;
+echo '<fieldset id="art-uploads-fieldset"><legend>Album Art upload</legend>';
+echo $this->formRow($form->get('album_art')) . PHP_EOL;
+echo '<a id="art-change-cancel-button" class="button secondary" href="'
+    . $this->url('album', array('action' => 'edit', 'id' => $this->id))
+    .'">Cancel</a></fieldset>';
+echo $this->formInput($form->get('submit')) . PHP_EOL;
+echo $this->form()->closeTag($form) . PHP_EOL;
+

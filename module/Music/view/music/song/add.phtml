@@ -1,0 +1,27 @@
+<?php
+$title = 'Add new song';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('song', array('action' => 'add')));
+$form->prepare();
+
+echo $this->form()->openTag($form) . PHP_EOL;
+echo $this->formHidden($form->get('csrf')) . PHP_EOL;
+echo $this->formHidden($form->get('id')) . PHP_EOL;
+if ($id != null)
+{
+    echo '<input name="album-id" id="album-id" type="hidden" value="' . $id . '">';
+}
+echo $this->formRow($form->get('album')) . PHP_EOL;
+//echo $this->formRow($form->get('name')) . PHP_EOL;
+echo $this->formRow($form->get('price')) . PHP_EOL;
+echo '<fieldset><legend>File uploads</legend>';
+echo $this->formRow($form->get('mp3')) . PHP_EOL;
+echo $this->formRow($form->get('ogg')) . PHP_EOL;
+echo '</fieldset>';
+echo $this->formInput($form->get('submit')) . PHP_EOL;
+echo $this->form()->closeTag($form) . PHP_EOL;

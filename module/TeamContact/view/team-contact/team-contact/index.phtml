@@ -1,0 +1,12 @@
+<?php $this->headTitle($this->translate('Contact')); ?>
+<h2>Contact</h2>
+
+<?php
+
+$form = $this->form;
+$form->setAttribute('action', $this->url('team-contact'));
+$form->prepare();
+
+echo $this->form()->openTag($form) . PHP_EOL;
+echo $this->formCollection($form);
+echo $this->form()->closeTag($form) . PHP_EOL;

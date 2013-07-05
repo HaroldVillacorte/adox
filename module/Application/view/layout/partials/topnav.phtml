@@ -1,0 +1,36 @@
+<nav class="top-bar" id="top-bar">
+    <ul>
+      <!-- Title Area -->
+      <li class="name">
+        <h1 id="logo">
+          <a href="<?php echo $this->url('home'); ?>" title="AudioDox home page.">
+            <?php echo $this->translate('AudioDox'); ?>
+          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar"><a href="#"></a></li>
+    </ul>
+
+    <section>
+
+      <!-- Left Nav Section -->
+      <ul class="left">
+          <li class="divider"></li>
+          <?php if($this->zfcuseridentity()): ?>
+          <li><a href="<?php echo $this->url('genre'); ?>">Admin</a></li>
+          <li class="divider"></li>
+          <?php endif; ?>
+
+      </ul>
+
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="divider hide-for-small hide-for-medium"></li>
+        <li>
+            <a href="<?php echo $this->url('zfcuser'); ?>" class="<?php echo $this->ajaxLink(); ?>">
+                <?php echo ($this->zfcUserIdentity()) ? $this->translate('Your Account') : $this->translate('Login'); ?>
+            </a>
+        </li>
+      </ul>
+    </section>
+</nav>

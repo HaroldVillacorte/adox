@@ -1,0 +1,24 @@
+<?php
+    $title = 'AudioDox';
+    $metaDescription = 'Alternative Radio.';
+?>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <?php echo $this->headTitle($this->translate($title))->setSeparator(' - ')->setAutoEscape(false); ?>
+
+  <meta name="description" content="<?php echo $metaDescription; ?>">
+
+  <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                        ->prependStylesheet($this->basePath() . '/stylesheets/custom.css')
+                        ->prependStylesheet($this->basePath() . '/stylesheets/app.css')
+                        ->prependStylesheet($this->basePath() . '/stylesheets/foundation.min.css'); ?>
+
+  <script src="<?php echo $this->basePath() ;?>/javascripts/foundation3/modernizr.foundation.js"></script>
+</head>

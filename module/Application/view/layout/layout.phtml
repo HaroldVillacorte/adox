@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<?php include 'partials/head.phtml'; ?>
+
+<body>
+
+    <?php include 'partials/topnav.phtml'; ?>
+
+    <section id="main-content" class="row">
+
+        <article id="ajax-content" class="columns twelve">
+
+            <section id="messages"><?php include 'partials/messages.phtml'; ?></section>
+
+            <?php echo $this->content; ?>
+
+        </article>
+
+    </section>
+
+    <div class="row">
+
+        <?php include 'partials/footer.phtml'; ?>
+
+    </div>
+
+    <?php include 'partials/scripts.phtml'; ?>
+
+</body>
+</html>

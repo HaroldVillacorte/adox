@@ -1,0 +1,57 @@
+<?php
+$title = 'All Songs';
+$this->headTitle($title);
+?>
+<h2><?php echo $title; ?></h2>
+
+<table border="0" width="100%">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Artist</th>
+            <th>Album</th>
+            <th>Price</th>
+            <th><a href="<?php echo $this->url('song', array('action' => 'add')); ?>" title="Add a song.">Add +</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($songs as $song): ?>
+        <tr>
+            <td width="10%"><?php echo (int) $song->getId(); ?></td>
+            <td>
+                <a href="<?php echo $this->url('song', array('action' => 'view', 'id' => (int) $song->getId())); ?>">
+                    <?php echo $this->escapeHtml($song->getName()); ?>
+                </a>
+            </td>
+            <td>
+                <a href="<?php echo $this->url('artist', array('action' => 'view', 'id' => (int) $song->getAlbum()->getArtist()->getId())); ?>">
+                    <?php echo $this->escapeHtml($song->getAlbum()->getArtist()->getName()); ?>
+                </a>
+            </td>
+            <td>
+                <?php
+                    $genres = $song->getAlbum()->getArtist()->getGenres();
+                    $genres_array = array();
+                    foreach ($genres as $genre) {
+                        $genres_array[] = '<a href="'
+                            . $this->url('genre', array('action' => 'view', 'id' => $genre->getId())) .'">'
+                            . $this->escapeHtml($genre->getName()) . '</a>';
+                    }
+                    echo implode(', ', $genres_array);
+                ?>
+            </td>
+            <td><?php echo $this->escapeHtml($song->getPrice()); ?></td>
+            <td >
+                <a href="<?php echo $this->url('song', array('action' => 'edit', 'id' => (int) $song->getId())); ?>"
+                   class="label primary small round"
+                   title="Edit song <?php echo (int) $song->getId(); ?>.">Edit</a>
+                &nbsp;
+                <a href="<?php echo $this->url('song', array('action' => 'delete', 'id' => (int) $song->getId())); ?>"
+                   class="label alert small round"
+                   title="Delete song <?php echo (int) $song->getId(); ?>.">Delete</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

@@ -1,0 +1,33 @@
+<?php
+$title = 'Application variables';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<table class="table" width="100%">
+    <thead>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Value</th>
+        <th>
+            <a href="<?php echo $this->url('variable', array('action'=>'add')); ?>">Add +</a>
+        </th>
+    </thead>
+    <tbody>
+        <?php foreach($variables as $variable): ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($variable->getName()); ?></td>
+            <td><?php echo $this->escapeHtml($variable->getCategory()); ?></td>
+            <td><pre><?php echo $this->escapeHtml($variable->getValue()); ?></pre></td>
+            <td>
+                <a href="<?php echo $this->url('variable',
+                    array('action'=>'edit', 'id' => $variable->getId())); ?>"
+                    class="label round small">Edit</a>
+                <a href="<?php echo $this->url('variable',
+                    array('action'=>'delete', 'id' => $variable->getId())); ?>"
+                    class="label round small alert">Delete</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<?php include 'admin_partials/head.phtml'; ?>
+
+<body>
+
+    <?php include 'admin_partials/topnav.phtml'; ?>
+
+    <section id="main-content" class="row">
+
+        <article id="ajax-content" class="columns twelve">
+
+            <section id="messages"><?php include 'admin_partials/messages.phtml'; ?></section>
+
+            <?php echo $this->content; ?>
+
+        </article>
+
+    </section>
+
+    <div class="row">
+
+        <?php include 'admin_partials/footer.phtml'; ?>
+
+    </div>
+
+    <?php include 'admin_partials/scripts.phtml'; ?>
+
+</body>
+</html>
