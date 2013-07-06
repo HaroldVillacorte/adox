@@ -1,8 +1,8 @@
 <?php
-$title = $this->escapeHtml($album->getName());
+$title = $album->getName();
 $this->headTitle($title);
 ?>
-<h2><?php echo $title; ?></h2>
+<h2><?php echo $this->escapeHtml($title); ?></h2>
 <h3>Songs</h3>
 
 <table border="0" width="100%">
