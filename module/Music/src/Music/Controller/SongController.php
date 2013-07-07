@@ -5,7 +5,6 @@ namespace Music\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Music\Form\SongForm;
-use Music\Form\SongEditForm;
 use Music\Entity\Song;
 
 class SongController extends AbstractActionController
@@ -58,7 +57,7 @@ class SongController extends AbstractActionController
 
     public function editAction()
     {
-        $id = (int)$this->params('id');
+        $id = (int) $this->params('id');
         $song = $this->getEntityManager()->find('Music\Entity\Song', $id);
 
         if (!$id || !$song)
@@ -90,7 +89,7 @@ class SongController extends AbstractActionController
                     $this->saveMusic($data);
                 }
                 else {
-                    $album = $this->getEntityManager()->find('Music\Entity\Album', $data['album']);
+                    $album = $this->getEntityManager()->find('Music\Entity\Album', (int) $data['album']);
                     $song->setName(isset($data['mp3']['name']) ? str_replace('.mp3', '',$data['mp3']['name']) : $data['name']);
                     $song->setAlbum($album);
                     $song->setPrice($data['price']);
@@ -119,12 +118,11 @@ class SongController extends AbstractActionController
 
     public function deleteAction()
     {
-        $id = (int)$this->params('id');
-        if (!$id) {
+        $id = (int) $this->params('id');
+        $song = $this->getEntityManager()->find('Music\Entity\Song', $id);
+        if (!$id || !$song) {
             return $this->redirect()->toRoute('song');
         }
-
-        $song = $this->getEntityManager()->find('Music\Entity\Song',$id);
 
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -170,7 +168,7 @@ class SongController extends AbstractActionController
     public function saveMusic($data = array())
     {
         // Get album.
-        $album = $this->getEntityManager()->find('Music\Entity\Album', $data['album']);
+        $album = $this->getEntityManager()->find('Music\Entity\Album', (int) $data['album']);
 
         // Set artist/album directory path.
         $mp3_dir_name = './public_html/Music/' . $album->getArtist()->getId() . '/' . $album->getId() . '/mp3/';
@@ -203,7 +201,7 @@ class SongController extends AbstractActionController
         // Move file.
         if (@copy($data['mp3']['tmp_name'], $mp3_new_file_path) && @copy($data['ogg']['tmp_name'], $ogg_new_file_path))
         {
-            $song = ($data['id'] != '') ? $this->getEntityManager()->find('Music\Entity\Song', $data['id']) : new Song();
+            $song = ($data['id'] != '') ? $this->getEntityManager()->find('Music\Entity\Song', (int) $data['id']) : new Song();
             if ($data['id'] != '') {
                 if ($song->getMp3FilePath() != $mp3_new_file_path)
                 {
@@ -243,7 +241,7 @@ class SongController extends AbstractActionController
 
     public function viewAction()
     {
-        $id = $this->params('id');
+        $id = (int) $this->params('id');
         $song = $this->getEntityManager()->find('Music\Entity\Song', $id);
         if (!$id || !$song)
         {

@@ -1,0 +1,24 @@
+<?php
+$title = 'Edit user';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('useradmin', array('action' => 'edit', 'id' => $id)));
+$form->prepare();
+
+echo $this->form()->openTag($form) . PHP_EOL;
+echo $this->formHidden($form->get('csrf')) . PHP_EOL;
+echo $this->formHidden($form->get('id')) . PHP_EOL;
+echo $this->formRow($form->get('username')) . PHP_EOL;
+echo $this->formRow($form->get('password')) . PHP_EOL;
+echo $this->formRow($form->get('passconf')) . PHP_EOL;
+echo $this->formRow($form->get('displayName')) . PHP_EOL;
+echo $this->formRow($form->get('email')) . PHP_EOL;
+echo $this->formRow($form->get('state')) . PHP_EOL;
+echo $this->formRow($form->get('user_roles')) . PHP_EOL;
+echo $this->formInput($form->get('submit')) . PHP_EOL;
+echo $this->form()->closeTag($form) . PHP_EOL;
+

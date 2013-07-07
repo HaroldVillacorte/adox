@@ -96,22 +96,22 @@ class Album
 
     public function setName($name = '')
     {
-        $this->name = $name;
+        $this->name = (string) $name;
     }
 
     public function setArtPath($path = '')
     {
-        $this->artPath = $path;
+        $this->artPath = (string) $path;
     }
 
     public function setArtUrl($url = '')
     {
-        $this->artUrl = $url;
+        $this->artUrl = (string) $url;
     }
 
     public function setPrice($price = '')
     {
-        $this->price = $price;
+        $this->price = (double) $price;
     }
 
     public function setArtist(Artist $artist)

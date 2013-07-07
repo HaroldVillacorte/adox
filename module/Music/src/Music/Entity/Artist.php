@@ -89,31 +89,26 @@ class Artist implements InputFilterAwareInterface
         return $this->albums;
     }
 
-    public function getSongs()
-    {
-        return $this->songs;
-    }
-
     // SETTERS
 
     public function setName($name = '')
     {
-        $this->name = $name;
+        $this->name = (string) $name;
     }
 
     public function setEmail($email = '')
     {
-        $this->email = $email;
+        $this->email = (string) $email;
     }
 
     public function setWebsite($website = '')
     {
-        $this->website = $website;
+        $this->website = (string) $website;
     }
 
     public function setGenres($genres = array())
     {
-        $this->genres = $genres;
+        $this->genres = (array) $genres;
     }
 
     public function addGenre(Genre $genre)
@@ -121,14 +116,9 @@ class Artist implements InputFilterAwareInterface
         $this->genres[] = $genre;
     }
 
-    public function addAlbum($album = '')
+    public function addAlbum(Album $album)
     {
         $this->albums[] = $album;
-    }
-
-    public function addSong($song = '')
-    {
-        $this->song[] = $song;
     }
 
     // REMOVERS
@@ -219,9 +209,6 @@ class Artist implements InputFilterAwareInterface
             $inputFilter->add($factory->createInput(array(
                 'name' => 'genres',
                 'required' => true,
-                'filters' => array(
-                    array('name' => 'Int'),
-                ),
             )));
 
             $inputFilter->add($factory->createInput(array(

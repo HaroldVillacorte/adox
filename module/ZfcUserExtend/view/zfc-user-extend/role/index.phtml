@@ -1,0 +1,46 @@
+<?php
+$title = 'Roles';
+$this->headTitle($title);
+?>
+<h2><?php echo $this->escapeHtml($title); ?></h2>
+
+<table border="0" width="100%">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Role</th>
+            <th>Parent role</th>
+            <th><a href="<?php echo $this->url('role', array('action' => 'add')); ?>" title="Add a role.">Add +</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($roles as $role): ?>
+        <tr>
+            <td width="10%"><?php echo (int) $role->getId(); ?></td>
+            <td>
+                <a href="<?php echo $this->url('role', array('action' => 'view', 'id' => (int) $role->getId())); ?>">
+                    <?php echo $this->escapeHtml($role->getRoleId()); ?>
+                </a>
+            </td>
+            <td>
+                <?php if ($role->getParent()): ?>
+                    <a href="<?php echo $this->url('role', array('action' => 'view', 'id' => (int) $role->getParent()->getId())); ?>">
+                        <?php echo $role->getParent()->getRoleId(); ?>
+                    </a>
+                <?php else: ?>
+                    None
+                <?php endif; ?>
+            </td>
+            <td >
+                <a href="<?php echo $this->url('role', array('action' => 'edit', 'id' => (int) $role->getId())); ?>"
+                   class="label primary small round"
+                   title="Edit role <?php echo (int) $role->getId(); ?>.">Edit</a>
+                &nbsp;
+                <a href="<?php echo $this->url('role', array('action' => 'delete', 'id' => (int) $role->getId())); ?>"
+                   class="label alert small round"
+                   title="Delete role <?php echo (int) $role->getId(); ?>.">Delete</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

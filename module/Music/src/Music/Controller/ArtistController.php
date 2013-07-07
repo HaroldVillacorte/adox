@@ -48,7 +48,7 @@ class ArtistController extends AbstractActionController
                 foreach($data['genre'] as $genre)
                 {
                     $add_genre = $this->getEntityManager()
-                        ->find('Music\Entity\Genre', $genre);
+                        ->find('Music\Entity\Genre', (int) $genre);
                     $artist->addGenre($add_genre);
                 }
                 $artist->populate($data);
@@ -119,7 +119,7 @@ class ArtistController extends AbstractActionController
                 $data = $request->getPost();
                 $new_genres_array = array();
                 foreach ($data->genre as $genre) {
-                    $new_genre = $this->getEntityManager()->find('Music\Entity\Genre', $genre);
+                    $new_genre = $this->getEntityManager()->find('Music\Entity\Genre', (int) $genre);
                     $new_genres_array[] = $new_genre;
                 }
                 $artist->setGenres($new_genres_array);
@@ -153,12 +153,12 @@ class ArtistController extends AbstractActionController
 
     public function deleteAction()
     {
-        $id = (int)$this->params('id');
+        $id = (int) $this->params('id');
         if (!$id) {
             return $this->redirect()->toRoute('artist');
         }
 
-        $artist = $this->getEntityManager()->find('Music\Entity\Artist',$id);
+        $artist = $this->getEntityManager()->find('Music\Entity\Artist', $id);
 
         $request = $this->getRequest();
         if ($request->isPost()) {

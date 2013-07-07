@@ -1,0 +1,54 @@
+<?php
+$title = 'Users';
+$this->headTitle($title);
+?>
+<h2><?php echo $this->escapeHtml($title); ?></h2>
+
+<table border="0" width="100%">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Display Name</th>
+            <th>Email</th>
+            <th>State</th>
+            <th>Roles</th>
+            <th><a href="<?php echo $this->url('useradmin', array('action' => 'add')); ?>" title="Add a user.">Add +</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($users as $user): ?>
+        <tr>
+            <td width="10%"><?php echo (int) $user->getId(); ?></td>
+            <td><?php echo $this->escapeHtml($user->getUsername()); ?></td>
+            <td><?php echo $this->escapeHtml($user->getDisplayName()); ?></td>
+            <td><?php echo '<a href="mailto:' . $this->escapeHtml($user->getEmail())
+                . '">' . $this->escapeHtml($user->getEmail()) .'</a>'; ?></td>
+            <td><?php echo (int) $user->getState(); ?></td>
+            <td>
+                <?php if (count($user->getRoles()) > 0):?>
+                    <?php
+                    $roles_array = array();
+                    foreach ($user->getRoles() as $role)
+                    {
+                        $roles_array[] = '<a href="'
+                            . $this->url('role', array('action' => 'view', 'id' => (int) $role->getId()))
+                            .'">' .  $this->escapeHtml($role->getRoleId()) . '</a>';
+                    }
+                    ?>
+                    <?php echo implode(', ', $roles_array); ?>
+                <?php endif; ?>
+            </td>
+            <td >
+                <a href="<?php echo $this->url('useradmin', array('action' => 'edit', 'id' => (int) $user->getId())); ?>"
+                   class="label primary small round"
+                   title="Edit user <?php echo (int) $user->getId(); ?>.">Edit</a>
+                &nbsp;
+                <a href="<?php echo $this->url('useradmin', array('action' => 'delete', 'id' => (int) $user->getId())); ?>"
+                   class="label alert small round"
+                   title="Delete user <?php echo (int) $user->getId(); ?>.">Delete</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

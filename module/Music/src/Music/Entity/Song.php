@@ -56,7 +56,7 @@ class Song
     protected $price;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Album")
+     * @ORM\ManyToOne(targetEntity="Album", inversedBy="songs")
      * @ORM\JoinColumn(name="album_id", referencedColumnName="id")
      */
     protected $album;
@@ -107,32 +107,32 @@ class Song
 
     public function setName($name = '')
     {
-        $this->name = $name;
+        $this->name = (string) $name;
     }
 
     public function setMp3FilePath($filepath = '')
     {
-        $this->mp3FilePath = $filepath;
+        $this->mp3FilePath = (string) $filepath;
     }
 
     public function setMp3Url($url = '')
     {
-        $this->mp3Url = $url;
+        $this->mp3Url = (string) $url;
     }
 
     public function setOggFilePath($filepath = '')
     {
-        $this->oggFilePath = $filepath;
+        $this->oggFilePath = (string) $filepath;
     }
 
     public function setOggUrl($url = '')
     {
-        $this->oggUrl = $url;
+        $this->oggUrl = (string) $url;
     }
 
     public function setPrice($price = '')
     {
-        $this->price = $price;
+        $this->price = (double) $price;
     }
 
     public function setAlbum(Album $album)

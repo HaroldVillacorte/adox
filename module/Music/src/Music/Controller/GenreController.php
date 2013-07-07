@@ -63,7 +63,7 @@ class GenreController extends AbstractActionController
 
     public function editAction()
     {
-        $id = (int)$this->params('id');
+        $id = (int) $this->params('id');
         $genre = $this->getEntityManager()->find('Music\Entity\Genre', $id);
 
         if (!$id || !$genre)
@@ -111,12 +111,12 @@ class GenreController extends AbstractActionController
 
     public function deleteAction()
     {
-        $id = (int)$this->params('id');
+        $id = (int) $this->params('id');
         if (!$id) {
             return $this->redirect()->toRoute('genre');
         }
 
-        $genre = $this->getEntityManager()->find('Music\Entity\Genre',$id);
+        $genre = $this->getEntityManager()->find('Music\Entity\Genre', $id);
 
         $request = $this->getRequest();
         if ($request->isPost()) {

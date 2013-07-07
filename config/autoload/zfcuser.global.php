@@ -12,7 +12,7 @@ $settings = array(
      * Please specify the DI alias for the configured Zend\Db\Adapter\Adapter
      * instance that ZfcUser should use.
      */
-    'zend_db_adapter' => 'Zend\Db\Adapter\Adapter',
+    //'zend_db_adapter' => 'Zend\Db\Adapter\Adapter',
 
     /**
      * User Model Entity Class
@@ -21,7 +21,7 @@ $settings = array(
      * instead of the default one provided. Default is ZfcUser\Entity\User.
      * The entity class should implement ZfcUser\Entity\UserInterface
      */
-    'user_entity_class' => 'ZfcUserExtend\Entity\UserExtend',
+    //'user_entity_class' => 'ZfcUser\Entity\User',
 
     /**
      * Enable registration
@@ -30,7 +30,7 @@ $settings = array(
      *
      * Accepted values: boolean true or false
      */
-    'enable_registration' => FALSE,
+    'enable_registration' => true,
 
     /**
      * Enable Username
@@ -40,7 +40,7 @@ $settings = array(
      *
      * Accepted values: boolean true or false
      */
-    'enable_username' => TRUE,
+    'enable_username' => true,
 
     /**
      * Authentication Adapters
@@ -71,7 +71,7 @@ $settings = array(
      * Default value: array containing 'email'
      * Accepted values: array containing one or more of: email, username
      */
-    'auth_identity_fields' => array( 'email', 'username' ),
+    'auth_identity_fields' => array( 'username' ),
 
     /**
      * Login form timeout
@@ -81,7 +81,7 @@ $settings = array(
      *
      * Accepted values: positive int value
      */
-    'login_form_timeout' => 300,
+    //'login_form_timeout' => 300,
 
     /**
      * Registration form timeout
@@ -91,7 +91,7 @@ $settings = array(
      *
      * Accepted values: positive int value
      */
-    'user_form_timeout' => 300,
+    //'user_form_timeout' => 300,
 
     /**
      * Login After Registration
@@ -101,7 +101,7 @@ $settings = array(
      *
      * Accepted values: boolean true or false
      */
-    'login_after_registration' => TRUE,
+    'login_after_registration' => true,
 
     /**
      * Registration Form Captcha
@@ -109,7 +109,7 @@ $settings = array(
      * Determines if a captcha should be utilized on the user registration form.
      * Default value is false.
      */
-    'use_registration_form_captcha' => TRUE,
+    //'use_registration_form_captcha' => true,
 
     /**
      * Form Captcha Options
@@ -118,14 +118,14 @@ $settings = array(
      * this to configure which Zend\Captcha adapter to use, and the options to
      * pass to it. The default uses the Figlet captcha.
      */
-    'form_captcha_options' => array(
+    /*'form_captcha_options' => array(
         'class'   => 'figlet',
         'options' => array(
             'wordLen'    => 5,
             'expiration' => 300,
             'timeout'    => 300,
         ),
-    ),
+    ),*/
 
     /**
      * Use Redirect Parameter If Present
@@ -134,7 +134,7 @@ $settings = array(
      *
      * Accepted values: boolean true or false
      */
-    'use_redirect_parameter_if_present' => true,
+    //'use_redirect_parameter_if_present' => true,
 
     /**
 	 * Sets the view template for the user login widget
@@ -142,7 +142,7 @@ $settings = array(
 	 * Default value: 'zfc-user/user/login.phtml'
      * Accepted values: string path to a view script
 	 */
-    'user_login_widget_view_template' => 'zfc-user/user/login.phtml',
+    //'user_login_widget_view_template' => 'zfc-user/user/login.phtml',
 
     /**
      * Login Redirect Route
@@ -153,7 +153,7 @@ $settings = array(
      * Accepted values: A valid route name within your application
      *
      */
-    'login_redirect_route' => 'zfcuser',
+    //'login_redirect_route' => 'zfcuser',
 
     /**
      * Logout Redirect Route
@@ -163,7 +163,7 @@ $settings = array(
      * Default value: 'zfcuser/login'
      * Accepted values: A valid route name within your application
      */
-    'logout_redirect_route' => 'zfcuser/login',
+    //'logout_redirect_route' => 'zfcuser/login',
 
     /**
      * Password Security
@@ -186,7 +186,7 @@ $settings = array(
      *
      * Accepted values: integer between 4 and 31
      */
-    'password_cost' => 14,
+    //'password_cost' => 14,
 
     /**
      * Enable user state usage
@@ -215,7 +215,7 @@ $settings = array(
     /**
      * User table name
      */
-    'table_name' => 'user',
+    //'table_name' => 'user',
 
     /**
      * End of ZfcUser configuration

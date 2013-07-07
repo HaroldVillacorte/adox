@@ -93,7 +93,7 @@ class AlbumController extends AbstractActionController
                     $this->saveAlbum($data);
                 }
                 else {
-                    $artist = $this->getEntityManager()->find('Music\Entity\Artist', $data['artist']);
+                    $artist = $this->getEntityManager()->find('Music\Entity\Artist', (int) $data['artist']);
                     $album->setName($data['name']);
                     $album->setArtist($artist);
                     $album->setPrice($data['price']);
@@ -120,7 +120,7 @@ class AlbumController extends AbstractActionController
 
     public function deleteAction()
     {
-        $id = (int)$this->params('id');
+        $id = (int) $this->params('id');
         if (!$id) {
             return $this->redirect()->toRoute('album');
         }
@@ -195,7 +195,7 @@ class AlbumController extends AbstractActionController
     public function saveAlbum($data = array())
     {
         // Get album.
-        $artist = $this->getEntityManager()->find('Music\Entity\Artist', $data['artist']);
+        $artist = $this->getEntityManager()->find('Music\Entity\Artist', (int) $data['artist']);
 
         // Set artist/album directory path.
         $album_art_dir_name = './public_html/Music/' . $artist->getId() . '/AlbumArt/';
@@ -216,7 +216,7 @@ class AlbumController extends AbstractActionController
         // Move file.
         if (@copy($data['album_art']['tmp_name'], $album_art_new_file_path))
         {
-            $album = ($data['id'] != '') ? $this->getEntityManager()->find('Music\Entity\Album', $data['id']) : new Album();
+            $album = ($data['id'] != '') ? $this->getEntityManager()->find('Music\Entity\Album', (int) $data['id']) : new Album();
             if ($data['id'] != '') {
                 if ($album->getArtPath() != $album_art_new_file_path)
                 {

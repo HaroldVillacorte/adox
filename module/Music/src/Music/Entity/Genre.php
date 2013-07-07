@@ -58,7 +58,7 @@ class Genre implements InputFilterAwareInterface
 
     public function setName($name = '')
     {
-        $this->name = $name;
+        $this->name = (string) $name;
     }
 
     // UNSETTERS.

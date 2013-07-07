@@ -10,7 +10,7 @@ class SongRestController extends AbstractRestfulController
 
     public function getSong($song_id = '')
     {
-        $song = $this->getEntityManager()->find('Music\Entity\Song', $song_id);
+        $song = $this->getEntityManager()->find('Music\Entity\Song', (int) $song_id);
         return file_get_contents($song->getMp3FilePath());
     }
 

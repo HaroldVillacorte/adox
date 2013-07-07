@@ -16,7 +16,7 @@ return array(
         'authenticated_role'    => 'user',
 
         // identity provider service name
-        'identity_provider'     => 'BjyAuthorize\Provider\Identity\ZfcUserZendDb',
+        'identity_provider'     => 'BjyAuthorize\Provider\Identity\AuthenticationIdentityProvider',
 
         // Role providers to be used to load all available roles into Zend\Permissions\Acl\Acl
         // Keys are the provider service names, values are the options to be passed to the provider
@@ -42,6 +42,7 @@ return array(
                 array('route' => 'zfcuser/logout', 'roles' => array('guest', 'user')),
                 array('route' => 'zfcuser/login', 'roles' => array('guest', 'user')),
                 array('route' => 'zfcuser/register', 'roles' => array('guest', 'user')),
+                array('route' => 'role', 'roles' => array('guest', 'user')),
                 array('route' => 'home', 'roles' => array('guest', 'user')),
 
                 // ZF2FileUploadExamples

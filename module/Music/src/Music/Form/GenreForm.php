@@ -8,8 +8,11 @@ class GenreForm extends Form
 {
     public function __construct($name = null)
     {
-        // we want to ignore the name passed
         parent::__construct('genre');
+
+        $this->setAttributes(array(
+            'class' => 'custom',
+        ));
 
         $this->add(array(
             'type' => 'Zend\Form\Element\Csrf',

@@ -16,6 +16,10 @@ class ArtistForm extends Form
         // we want to ignore the name passed
         parent::__construct('artist');
 
+        $this->setAttributes(array(
+            'class' => 'custom',
+        ));
+
         $this->add(array(
             'type' => 'Zend\Form\Element\Csrf',
             'name' => 'csrf',

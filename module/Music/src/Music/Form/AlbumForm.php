@@ -14,6 +14,9 @@ class AlbumForm extends Form
         parent::__construct($name);
 
         $this->setInputFilter($this->createInputFilter($file_required));
+        $this->setAttributes(array(
+            'class' => 'custom',
+        ));
 
         // CSRF
         $csrf = new Element\Csrf('csrf');
